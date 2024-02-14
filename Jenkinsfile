@@ -1,20 +1,35 @@
-node {
-    
-    stage('Checkout') {
-        checkout scm
-    }
+pipeline {
+    agent any
 
-    stage('Instalar Dependencias') {
-        npm install
-    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
 
-    stage('Construir') {
-        'npm run build'
-    }
+        stage('Instalar Dependencias') {
+            steps {
+                script {
+                    sh 'npm install'
+                }
+            }
+        }
 
-     stage('Docker') {
-        'docker build -t angular .'
-    }
+        stage('Construir') {
+            steps {
+                script {
+                    sh 'npm run build'
+                }
+            }
+        }
 
-    
+        stage('Docker') {
+            steps {
+                script {
+                    sh 'docker build -t angular .'
+                }
+            }
+        }
+    }
 }
