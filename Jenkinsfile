@@ -13,7 +13,7 @@ node {
     }
 
      stage('Docker') {
-        sh 'docker build -t angular .'
+        'docker build -t angular .'
     }
 
     
