@@ -12,5 +12,9 @@ node {
         'npm run build'
     }
 
+     stage('Docker') {
+        'docker build -t angular .'
+    }
+
     
 }
